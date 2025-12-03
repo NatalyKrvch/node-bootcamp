@@ -1,5 +1,6 @@
 const fs = require('fs')
 const http = require('http')
+const url = require('url')
 
 //////////////////////////////////////////////////////////////////////
 //FILES
@@ -35,7 +36,20 @@ const http = require('http')
 ///////////////////////////////////////////////////////////////////////////////////
 //SERVER
 const server = http.createServer((req, res) => {
-    res.end('Hello from the server!')
+    console.log(`Server running at ${(req.url)}`)
+    const pathName = req.url
+
+    if (pathName === '/' || pathName === '/about') {
+    res.end('this is /about!');
+    } else if (pathName === '/projects') {
+    res.end('this is /projects!');
+    } else {
+        res.writeHead(404, {
+            'Content-Type': 'text/html',
+            'my-own-header': 'hello,world'
+        });
+        res.end('<h1>not found</h1>');
+    }
 })
 
 server.listen(8000, '127.0.0.1', () => {
