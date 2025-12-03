@@ -35,14 +35,22 @@ const url = require('url')
 
 ///////////////////////////////////////////////////////////////////////////////////
 //SERVER
+
+
+const data = fs.readFileSync(`${__dirname}/starter/dev-data/data.json`, 'utf8')
+const dataObj = JSON.parse(data)
+
 const server = http.createServer((req, res) => {
     console.log(`Server running at ${(req.url)}`)
     const pathName = req.url
 
     if (pathName === '/' || pathName === '/about') {
-    res.end('this is /about!');
+        res.end('this is /about!');
     } else if (pathName === '/projects') {
-    res.end('this is /projects!');
+        res.end('this is /projects!');
+    } else if (pathName === '/api') {
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(data);
     } else {
         res.writeHead(404, {
             'Content-Type': 'text/html',
