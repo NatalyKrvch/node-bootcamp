@@ -44,10 +44,10 @@ const server = http.createServer((req, res) => {
     console.log(`Server running at ${(req.url)}`)
     const pathName = req.url
 
-    if (pathName === '/' || pathName === '/about') {
-        res.end('this is /about!');
-    } else if (pathName === '/projects') {
-        res.end('this is /projects!');
+    if (pathName === '/' || pathName === '/overview') {
+        res.end('this is overview!');
+    } else if (pathName === '/product') {
+        res.end('this is product!');
     } else if (pathName === '/api') {
         res.writeHead(200, {'Content-Type': 'application/json'});
         res.end(data);
