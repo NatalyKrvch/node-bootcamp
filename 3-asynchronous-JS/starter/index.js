@@ -31,10 +31,28 @@ const getDogPic = async () => {
         console.log('random dog image has saved to the file')
     } catch (err) {
         console.log(err)
+        throw(err)
     }
+    return '2: ready'
 }
 
-getDogPic()
+(async () => {
+    try {
+        console.log('1: will get the dog picture')
+        const x = await getDogPic()
+        console.log(x)
+        console.log('3: done')
+    } catch (err) {
+        console.log('ERROR')
+    }
+})()
+
+// console.log('1: will get the dog picture')
+//
+// getDogPic().then(x => {
+// console.log(x)
+// console.log('3: done')
+// }).catch(err => console.log('ERROR'))
 
 // readFileProm(`${__dirname}/dog.txt`)
 //     .then(data => {
